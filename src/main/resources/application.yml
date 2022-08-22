@@ -1,0 +1,69 @@
+spring:
+  #JPA 설정
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    properties:
+      hibernate:
+        ddl-auto: none
+        format_sql: true
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  datasource:
+    url: jdbc:mariadb://127.0.0.1:3306/newsapp
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: wjd@568099
+
+  redis:
+    host: 13.125.219.49
+    port: 6379
+
+  server:
+    port: 8080
+
+  profiles:
+    include: 'email'
+
+jwt:
+  header: Authorization
+  #HS512 알고리즘을 사용할 것이기 때문에 512bit, 즉 64byte 이상의 secret key를 사용해야 한다.
+  secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
+  token-validity-in-seconds: 86400
+  access-token-validity-in-seconds: 1800 # 초 단위
+  refresh-token-validity-in-seconds: 604800
+
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIAZDM64FMQE2ANLE4B
+      secretKey: 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
+    s3:
+      bucket: opennewsapp
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
+
+springdoc:
+  version: '@project.version@'
+  api-docs:
+    path: /api-docs
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  swagger-ui:
+    operations-sorter: alpha
+    tags-sorter: alpha
+    path: /swagger-ui.html
+    disable-swagger-default-url: true
+    display-query-params-without-oauth2: true
+  paths-to-match:
+    - /api/**
+

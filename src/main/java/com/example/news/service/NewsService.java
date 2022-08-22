@@ -1,0 +1,161 @@
+package com.example.news.service;
+
+import com.example.news.bean.ModelMapperBean;
+import com.example.news.dto.in.NewsInDto;
+import com.example.news.dto.out.NewNewsDto;
+import com.example.news.dto.out.NewsOutDto;
+import com.example.news.dto.out.NewsSimpleDto;
+import com.example.news.entity.NewsEntity;
+import com.example.news.entity.UserEntity;
+import com.example.news.exception.NoAuthException;
+import com.example.news.repo.NewsRepo;
+import com.example.news.repo.UserRepo;
+import com.example.news.types.NewsMain;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.io.IOException;
+import java.util.Set;
+
+@Service
+public class NewsService {
+
+    @Autowired
+    UserRepo userRepo;
+
+    @Autowired
+    NewsRepo newsRepo;
+
+    @Autowired
+    S3Service s3Service;
+
+    @Autowired
+    SocketService socketService;
+
+    @Autowired
+    ModelMapperBean modelMapperBean;
+
+    @Transactional
+    public NewsOutDto createNews(int userId, NewsInDto newsInDto) throws IOException {
+
+        UserEntity userEntity = userRepo.findByUserId(userId);
+
+        //이미지 생성
+        String profile = s3Service.upload(newsInDto.getNewsProfile());
+
+        NewsEntity newsEntity = NewsEntity.from(newsInDto, profile, userEntity, modelMapperBean.modelMapper());
+        newsEntity = newsRepo.save(newsEntity);
+
+        //새 뉴스 알림
+        socketService.sendMessage(NewNewsDto.from(newsEntity, modelMapperBean.modelMapper()));
+
+        NewsOutDto newsOutDto = NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity);
+        return newsOutDto;
+    }
+
+    public NewsOutDto readNews(int newsId) {
+
+        NewsEntity newsEntity = newsRepo.findByNewsId(newsId);
+        return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity);
+    }
+
+    public Page<NewsSimpleDto> readByUserName(String userName, Pageable pageable) {
+
+        Page<NewsEntity> newsEntities = newsRepo.getNewsEntitiesByUserName(userName, pageable);
+        return NewsSimpleDto.from(modelMapperBean.modelMapper(), newsEntities);
+    }
+
+
+    public Page<NewsSimpleDto> readBySearch(Boolean approved, String query, String newsCate, NewsMain newsMain, Pageable pageable){
+
+        Page<NewsEntity> newsEntities = newsRepo.getNews(approved, query, newsCate, newsMain, pageable);
+        return NewsSimpleDto.from(modelMapperBean.modelMapper(), newsEntities);
+    }
+
+    public Set<NewsSimpleDto> readMainNews(){
+        Set<NewsEntity> newsEntities = newsRepo.getNewsEntitiesByNewsMainNot(NewsMain.NORMAL);
+        return NewsSimpleDto.from(modelMapperBean.modelMapper(), newsEntities);
+
+    }
+
+    public Page<NewsSimpleDto> readAllNews(Pageable pageable){
+
+        Page<NewsEntity> newsEntities = newsRepo.findAll(pageable);
+        return NewsSimpleDto.from(modelMapperBean.modelMapper(), newsEntities);
+    }
+
+    @Transactional
+    public NewsOutDto updateNews(int newsId, NewsInDto newsInDto) throws IOException {
+
+        NewsEntity newsEntity = newsRepo.findByNewsId(newsId);
+
+        String newsProfile = newsEntity.getNewsProfile();
+
+        if(newsInDto.getNewsProfile() != null) {
+            s3Service.delete(newsProfile);
+            newsProfile = s3Service.upload(newsInDto.getNewsProfile());
+        }
+
+        newsEntity.setNewsTitle(newsInDto.getNewsTitle());
+        newsEntity.setNewsSubTitle(newsInDto.getNewsSubTitle());
+        newsEntity.setNewsContent(newsInDto.getNewsContent());
+        newsEntity.setNewsCate(newsInDto.getNewsCate());
+        newsEntity.setNewsProfile(newsProfile);
+        newsRepo.save(newsEntity);
+
+        return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity);
+    }
+
+    @Transactional
+    public void deleteNews(int newsId) throws IOException {
+
+        NewsEntity newsEntity = newsRepo.findByNewsId(newsId);
+
+        //프로필 삭제
+        s3Service.delete(newsEntity.getNewsProfile());
+        newsRepo.delete(newsEntity);
+    }
+
+    //뉴스를 승인한다.
+    @Transactional
+    public NewsOutDto setNewsApproved(int newsId, boolean approved) {
+
+        NewsEntity newsEntity = newsRepo.findByNewsId(newsId);
+        newsEntity.setNewsApproved(approved);
+
+        return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity);
+    }
+
+    //뉴스 메인 여부를 변경한다.
+    @Transactional
+    public NewsOutDto setNewsMain(int newsId, NewsMain newsMain) {
+
+        NewsEntity newsEntity = newsRepo.findByNewsId(newsId);
+        newsEntity.setNewsMain(newsMain);
+
+        //승인되지 않은 뉴스면
+        if(!newsEntity.isNewsApproved()) {
+
+        }
+
+        if(newsMain.equals(NewsMain.MAINSUB)){
+
+        }
+
+        //기존 해당 타입의 뉴스를 가져온다.
+        NewsEntity main = newsRepo.getByNewsMain(newsMain);
+
+        //일반으로 변경
+        main.setNewsMain(NewsMain.NORMAL);
+
+        //새로 들어온 뉴스를 메인 타입으로 변경
+        newsEntity.setNewsMain(newsMain);
+
+
+        return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity);
+
+    }
+}
