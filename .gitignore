@@ -1,6 +1,6 @@
 HELP.md
 .gradle
-application-email.yml
+src/main/resources/application-email.yml
 # Created by https://www.toptal.com/developers/gitignore/api/gradle,intellij,java,intellij+iml,intellij+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=gradle,intellij,java,intellij+iml,intellij+all
 
