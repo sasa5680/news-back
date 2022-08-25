@@ -2,7 +2,7 @@ spring:
   #JPA 설정
   jpa:
     defer-datasource-initialization: true
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         ddl-auto: none

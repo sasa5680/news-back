@@ -88,10 +88,10 @@ public class NewsController {
             @Parameter(description = "검색어, null 혹은 빈 문자열 가능", in = ParameterIn.QUERY)
             @RequestParam(value = "cate", required = false) String newsCate,
             @Parameter(description = "뉴스 메인 여부, null 혹은 빈 문자열 가능", in = ParameterIn.QUERY)
-            @RequestParam(value = "main", required = false) NewsMain newsMain,
+            @RequestParam(value = "main", required = false) String newsMain,
             @PageableDefault(page = 0, size = 10) Pageable pageable) {
 
-        return newsService.readBySearch(true, query, newsCate, newsMain.getNewsType(), pageable);
+        return newsService.readBySearch(true, query, newsCate, newsMain, pageable);
     }
 
     @Operation(summary = "뉴스를 검색 조건에 따라 가져온다. 승인되지 않은것도 가져온다. 어드민 전용")

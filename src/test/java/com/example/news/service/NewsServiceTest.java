@@ -126,7 +126,7 @@ public class NewsServiceTest {
 
         given(newsRepo.findByNewsId(newsId)).willReturn(newsEntity);
         given(newsRepo.findFirst4ByNewsCateAndNewsIdNotOrderByNewsId(any(), anyInt())).willReturn(newsEntities);
-        
+
         //when
         NewsOutDto newsOutDto = newsService.readNews(newsId);
 
