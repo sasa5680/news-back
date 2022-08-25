@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 //import org.springframework.test.context.junit5.SpringRunner;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 import static org.junit.Assert.*;
@@ -133,5 +134,20 @@ public class NewsRepoTest {
 
         NewsEntity mainNews = newsRepo.getByNewsMain(NewsMain.MAIN);
         assertEquals(NewsMain.MAIN, mainNews.getNewsMain());
+    }
+
+    //연관 뉴스 가져오는 테스트
+    @Test
+    public void getRelatedNewsTest() {
+
+        //뉴스 생성, 4개 생성한다.
+        for(int i = 0; i < 5; i ++) {
+            NewsEntity newsEntity = MockNews.getNewsEntity();
+            newsEntity.setUser(userEntity);
+            this.newsEntity = newsRepo.save(newsEntity);
+        }
+
+        Set<NewsEntity> newsEntities = newsRepo.findFirst4ByNewsCateAndNewsIdNotOrderByNewsId(this.newsEntity.getNewsCate(), this.newsEntity.getNewsId());
+        assertNotEquals(newsEntities.size(), 0);
     }
 }

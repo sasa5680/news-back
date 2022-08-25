@@ -52,14 +52,15 @@ public class NewsService {
         //새 뉴스 알림
         socketService.sendMessage(NewNewsDto.from(newsEntity, modelMapperBean.modelMapper()));
 
-        NewsOutDto newsOutDto = NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity);
+        NewsOutDto newsOutDto = NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity, null);
         return newsOutDto;
     }
 
     public NewsOutDto readNews(int newsId) {
 
         NewsEntity newsEntity = newsRepo.findByNewsId(newsId);
-        return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity);
+        Set<NewsEntity> relatedNewsEntities = newsRepo.findFirst4ByNewsCateAndNewsIdNotOrderByNewsId(newsEntity.getNewsCate(), newsId);
+        return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity, relatedNewsEntities);
     }
 
     public Page<NewsSimpleDto> readByUserName(String userName, Pageable pageable) {
@@ -69,7 +70,7 @@ public class NewsService {
     }
 
 
-    public Page<NewsSimpleDto> readBySearch(Boolean approved, String query, String newsCate, NewsMain newsMain, Pageable pageable){
+    public Page<NewsSimpleDto> readBySearch(Boolean approved, String query, String newsCate, String newsMain, Pageable pageable){
 
         Page<NewsEntity> newsEntities = newsRepo.getNews(approved, query, newsCate, newsMain, pageable);
         return NewsSimpleDto.from(modelMapperBean.modelMapper(), newsEntities);
@@ -106,7 +107,7 @@ public class NewsService {
         newsEntity.setNewsProfile(newsProfile);
         newsRepo.save(newsEntity);
 
-        return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity);
+        return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity, null);
     }
 
     @Transactional
@@ -126,7 +127,7 @@ public class NewsService {
         NewsEntity newsEntity = newsRepo.findByNewsId(newsId);
         newsEntity.setNewsApproved(approved);
 
-        return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity);
+        return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity, null);
     }
 
     //뉴스 메인 여부를 변경한다.
@@ -155,7 +156,7 @@ public class NewsService {
         newsEntity.setNewsMain(newsMain);
 
 
-        return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity);
+        return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity, null);
 
     }
 }

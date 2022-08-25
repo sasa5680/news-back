@@ -35,8 +35,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyBoolean;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
@@ -122,8 +121,12 @@ public class NewsServiceTest {
 
         //given
         int newsId = newsEntity.getNewsId();
-        given(newsRepo.findByNewsId(newsId)).willReturn(newsEntity);
 
+        Set<NewsEntity> newsEntities = Set.of(newsEntity);
+
+        given(newsRepo.findByNewsId(newsId)).willReturn(newsEntity);
+        given(newsRepo.findFirst4ByNewsCateAndNewsIdNotOrderByNewsId(any(), anyInt())).willReturn(newsEntities);
+        
         //when
         NewsOutDto newsOutDto = newsService.readNews(newsId);
 
