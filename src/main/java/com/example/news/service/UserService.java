@@ -55,7 +55,7 @@ public class UserService {
         uuidMap.putObject(uuid.toString(), userInDto);
 
         //메일 전송
-        mailService.sendConfirmEmail(uuid.toString(), userInDto.getUserEmail());
+        mailService.sendConfirmEmail(uuid.toString(), userInDto.getUserEmail(), userInDto.getUserName());
 
         return uuid.toString();
     }
@@ -111,7 +111,7 @@ public class UserService {
             String userProfile;
 
             if(dto.getUserProfile() != null){
-                userProfile = s3Service.upload(dto.getUserProfile());
+                userProfile = s3Service.upload(dto.getUserProfile(), uuidMap.getFile(UUID).get());
             } else {
                 userProfile = "default";
             }
@@ -119,9 +119,10 @@ public class UserService {
             UserEntity userEntity = UserEntity.from(dto, userProfile, modelMapperBean.modelMapper());
             userEntity = userRepo.save(userEntity);
             UserOutDto userOutDto = UserOutDto.from(userEntity, modelMapperBean.modelMapper());
+            System.out.println(userOutDto);
             return Optional.of(userOutDto);
         } else {
-            return Optional.of(null);
+            return Optional.ofNullable(null);
         }
     }
 

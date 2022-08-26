@@ -61,7 +61,7 @@ public class UserServiceTest {
         //given
         UserInDto userInDto = MockUser.getUserInDto();
 
-        doNothing().when(mailService).sendConfirmEmail(any(), any());
+        doNothing().when(mailService).sendConfirmEmail(any(), any(), any());
         doNothing().when(uuidMap).putObject(any(), any());
 
         given(uuidMap.getObject(any())).willReturn(Optional.of(userInDto));
@@ -127,6 +127,7 @@ public class UserServiceTest {
         assertEquals(userInDto.getUserEmail(), userOutDto.getUserEmail());
         assertEquals(userInDto.getUserName(), userOutDto.getUserName());
         assertEquals(userInDto.getUserIntro(), userOutDto.getUserIntro());
+
     }
 
     @DisplayName("create news service test")

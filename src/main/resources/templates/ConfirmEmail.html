@@ -9,7 +9,6 @@
 
 <body>
 <!-- 메인 박스 -->
-<!-- 메인 박스 -->
 <div style="width: 100%; background-color: #f0f1f3;">
     <!-- 타이틀 부분 -->
     <div
@@ -30,18 +29,23 @@
 
     <!-- Inner Box -->
     <div
-            style="font-family: 'Cera Round Pro',' Proxima Nova Soft',' Proxima Nova',' Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 16px; background-color:black; width: 600px; margin-left: auto; margin-right: auto; border-radius: 10px; padding: 40px; margin-top: 30px;">
+            style="font-weight: 200; font-family: 'Cera Round Pro',' Proxima Nova Soft',' Proxima Nova',' Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 16px; background-color:black; width: 600px; margin-left: auto; margin-right: auto; border-radius: 10px; padding: 40px; margin-top: 30px;">
+        <div style="display: flex; align-items: center;">
+            <p style="font-size: 30px; font-weight: 700;">Welcome!</p>
+            <p th:text="${userName}" style="font-size: 30px; font-weight: 700; color: #245698; margin-left: 10px;"></p>
 
-        <p>Welcom sasa5680!</p>
-        <p>Thanks for Signing Up!</p>
-        <p>To Complete your registration, please click the Button Below.</p>
+        </div>
+        <p >Thanks for Signing Up!</p>
+        <p>To complete your registration, please click the Button Below.</p>
+
+        <img src="58aff1e7829958a978a4a6ce.png"/>
+
         <div style="display: flex; justify-content: center; margin-top: 30px;">
-            <a href=""><button
+            <a th:href="${link}"><button
                     style="width: 150px; height: 50px; font-size: 30px; cursor: pointer; background-color:#245698; border: none;">Go</button></a>
         </div>
 
     </div>
 </div>
-
 </body>
 </html>

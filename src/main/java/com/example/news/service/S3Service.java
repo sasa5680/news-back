@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
 @Service
@@ -58,10 +59,23 @@ public class S3Service {
 
         //이미지 url를 리턴으로 내보낸다.
         return s3Client.getUrl(bucket, uploadName).toString();
-
-
-
     }
+
+    public String upload(MultipartFile file, byte[] byteArray) throws IOException {
+
+        long time = System.currentTimeMillis();
+        String uploadName =  time + file.getOriginalFilename();
+        ObjectMetadata objMeta = new ObjectMetadata();
+
+        objMeta.setContentLength(byteArray.length);
+
+        s3Client.putObject(new PutObjectRequest(bucket, uploadName, new ByteArrayInputStream(byteArray), objMeta)
+                .withCannedAcl(CannedAccessControlList.PublicRead));
+
+        //이미지 url를 리턴으로 내보낸다.
+        return s3Client.getUrl(bucket, uploadName).toString();
+    }
+
 
     //오브젝트 삭제
     public void delete(String src){

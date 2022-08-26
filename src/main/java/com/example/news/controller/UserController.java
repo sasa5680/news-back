@@ -35,11 +35,11 @@ public class UserController {
 
     @Operation(summary = "유저 생성", description = "유저를 생성한다.")
     @PostMapping("/create")
-    public void createUser(
+    public String createUser(
             @Parameter(name = "유저 정보 dto", description = "유저 DTO", required = true)
             @Valid UserInDto userInDto) throws IOException, MessagingException {
 
-        userService.acceptSignUp(userInDto);
+        return userService.acceptSignUp(userInDto);
     }
 
     @Operation(summary = "유저 읽어오기", description = "유저 고유 id를 이용하여 유저를 읽어온다.")
@@ -103,7 +103,8 @@ public class UserController {
 
         Optional<UserOutDto> userOutDto =  userService.emailVerifyUUID(uuid);
 
+        System.out.println(userOutDto.isPresent());
         if(userOutDto.isPresent()) return userOutDto.get();
-        else throw new BadRequestException(ErrorCode.EMAIL_NOT_CERTIFIED);
+        else throw new ForbiddenException(ErrorCode.EMAIL_NOT_CERTIFIED);
     }
 }

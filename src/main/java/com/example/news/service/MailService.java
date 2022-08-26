@@ -82,14 +82,16 @@ public class MailService {
 
     //유효한 이메일 주소인지 인증하는 메일을 발송
     @Async
-    public void sendConfirmEmail(String UUID, String email) throws MessagingException {
+    public void sendConfirmEmail(String UUID, String email, String username) throws MessagingException {
+
+        String link = "http://localhost:3000/confirm/"+UUID;
 
         Context context = new Context();
-        context.setVariable("UUID", UUID);
+        context.setVariable("link", link);
+        context.setVariable("userName", username);
 
         String subject = "회원가입 인증";
         String body = templateEngine.process("ConfirmEmail", context);
         setMail(subject, body, email);
     }
-
 }

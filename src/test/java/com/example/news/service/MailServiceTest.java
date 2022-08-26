@@ -28,7 +28,7 @@ public class MailServiceTest {
 
     @Test
     public void sendMailConfirmMail() throws MessagingException, InterruptedException {
-        mailService.sendConfirmEmail( "123456", "sasa5680@naver.com");
+        mailService.sendConfirmEmail( "123456", "sasa5680@naver.com", "sasa5680");
 
         //스프링 컨텍스트가 모두 종료되기 때문에 sleep을 걸어준다.
         Thread.sleep(15000);

@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class MockUser {
 
     public static String code = "123456";
-    public static String userEmail = "sasa9152@naver.com";
+    public static String userEmail = "someUser@naver.com";
     public static String userPw = "1234@dddddd";
     public static String userName = "John Doe";
     public static String userIntro = "some Intro";
