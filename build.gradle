@@ -72,4 +72,8 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+jar {
+    enabled = false
+}
 targetCompatibility = JavaVersion.VERSION_16
