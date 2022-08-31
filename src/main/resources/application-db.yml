@@ -3,4 +3,4 @@ spring:
     url: jdbc:mariadb://mydb.c8xuw45xrre9.ap-northeast-2.rds.amazonaws.com/newsapp
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
-    password:
+    password: wjdtjdruf69
