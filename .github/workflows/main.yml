@@ -28,10 +28,6 @@ jobs:
               #              yq -i '.kakao.client.id = "${{secrets.KAKAO_KEY}}"' 'src/main/resources/application-social.yml'
               #heroku 배포
 
-      - name: see files
-        with:
-          cmd : | 
-            ls -al
       - name: Heroku deploy
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
