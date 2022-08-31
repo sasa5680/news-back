@@ -127,36 +127,34 @@ public class NewsService {
         NewsEntity newsEntity = newsRepo.findByNewsId(newsId);
         newsEntity.setNewsApproved(approved);
 
+        if(approved == true) {socketService.sendMessage(NewNewsDto.from(newsEntity, modelMapperBean.modelMapper()));}
+
         return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity, null);
     }
 
     //뉴스 메인 여부를 변경한다.
     @Transactional
-    public NewsOutDto setNewsMain(int newsId, NewsMain newsMain) {
+    public NewsOutDto setNewsMain(int newsId, NewsMain newsMain) throws Exception {
 
         NewsEntity newsEntity = newsRepo.findByNewsId(newsId);
-        newsEntity.setNewsMain(newsMain);
-
         //승인되지 않은 뉴스면
         if(!newsEntity.isNewsApproved()) {
-
+            throw new Exception();
         }
 
-        if(newsMain.equals(NewsMain.MAINSUB)){
+        NewsEntity main;
 
+        if(newsMain == NewsMain.MAIN) {
+            main = newsRepo.getByNewsMain(newsMain);
+            main.setNewsMain(NewsMain.NORMAL);
+        }
+        else if(newsMain == NewsMain.CATEMAIN) {
+            main = newsRepo.getByNewsMainAndNewsCate(newsMain, newsEntity.getNewsCate());
+            main.setNewsMain(NewsMain.NORMAL);
         }
 
-        //기존 해당 타입의 뉴스를 가져온다.
-        NewsEntity main = newsRepo.getByNewsMain(newsMain);
-
-        //일반으로 변경
-        main.setNewsMain(NewsMain.NORMAL);
-
-        //새로 들어온 뉴스를 메인 타입으로 변경
         newsEntity.setNewsMain(newsMain);
 
-
         return NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity, null);
-
     }
 }

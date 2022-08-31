@@ -173,7 +173,7 @@ public class NewsController {
             @PathVariable int id,
             @Parameter(description = "뉴스 승인 여부", required = true, in = ParameterIn.QUERY)
             @RequestParam NewsMain newsmain
-    ) throws IOException {
+    ) throws Exception {
 
         return newsService.setNewsMain(id, newsmain);
     }

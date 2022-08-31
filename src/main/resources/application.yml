@@ -1,3 +1,8 @@
+
+server:
+  tomcat:
+    max-http-form-post-size: 6291456
+
 spring:
   #JPA 설정
   jpa:
@@ -10,17 +15,11 @@ spring:
 
   servlet:
     multipart:
-      max-file-size: 5MB
+      max-file-size: 8MB
 
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-
-  datasource:
-    url: jdbc:mariadb://127.0.0.1:3306/newsapp
-    driver-class-name: org.mariadb.jdbc.Driver
-    username: root
-    password: wjd@568099
 
   redis:
     host: 13.125.219.49
@@ -30,7 +29,7 @@ spring:
     port: 8080
 
   profiles:
-    include: 'email'
+    include: 'email, db, cloud'
 
 jwt:
   header: Authorization
@@ -39,18 +38,6 @@ jwt:
   token-validity-in-seconds: 86400
   access-token-validity-in-seconds: 1800 # 초 단위
   refresh-token-validity-in-seconds: 604800
-
-cloud:
-  aws:
-    credentials:
-      accessKey: AKIAZDM64FMQE2ANLE4B
-      secretKey: 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
-    s3:
-      bucket: opennewsapp
-    region:
-      static: ap-northeast-2
-    stack:
-      auto: false
 
 springdoc:
   version: '@project.version@'

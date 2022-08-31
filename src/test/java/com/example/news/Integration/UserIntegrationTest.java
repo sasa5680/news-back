@@ -202,7 +202,6 @@ public class UserIntegrationTest {
 
         MvcResult result = mvc.perform(builder
                         .file(userProfile)
-                        .param("userName", MockUser.newName)
                         .param("userIntro", MockUser.newIntro)
                 )
                 .andExpect(status().isOk())
@@ -213,7 +212,6 @@ public class UserIntegrationTest {
         UserOutDto userOutDto = objectMapper.readValue(result.getResponse().getContentAsString(), UserOutDto.class);
 
         assertNotEquals(0, userOutDto.getUserId());
-        assertEquals(MockUser.newName, userOutDto.getUserName());
         assertEquals(MockUser.newProfile, userOutDto.getUserProfile());
         assertEquals(MockUser.newIntro, userOutDto.getUserIntro());
     }

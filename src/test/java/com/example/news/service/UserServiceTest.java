@@ -172,7 +172,6 @@ public class UserServiceTest {
         UserOutDto userOutDto = userService.updateUser(userId, userUpdateDto);
 
         //then
-        assertEquals(userOutDto.getUserName(), userUpdateDto.getUserName());
         assertEquals(userOutDto.getUserIntro(), userUpdateDto.getUserIntro());
         assertEquals(userOutDto.getUserProfile(), MockUser.newProfile);
 

@@ -79,7 +79,6 @@ public class UserService {
             userProfile = userEntity.getUserProfile();
         }
 
-        userEntity.setUserName(userUpdateDto.getUserName());
         userEntity.setUserIntro(userUpdateDto.getUserIntro());
         userEntity.setUserProfile(userProfile);
 

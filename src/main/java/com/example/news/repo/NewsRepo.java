@@ -36,6 +36,8 @@ public interface NewsRepo extends JpaRepository<NewsEntity, Integer> {
 
     NewsEntity getByNewsMain(NewsMain newsMain);
 
+    NewsEntity getByNewsMainAndNewsCate(NewsMain newsMain, String newsCate);
+
     @Query(value = "select user_id from news where news_id = :newsId", nativeQuery = true)
     int findUserIdByNewsId(int newsId);
 

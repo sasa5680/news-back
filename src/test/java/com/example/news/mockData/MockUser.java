@@ -99,7 +99,6 @@ public class MockUser {
 
         UserUpdateDto userUpdateDto = new UserUpdateDto();
 
-        userUpdateDto.setUserName(newName);
         userUpdateDto.setUserIntro(newIntro);
 
         ClassPathResource classPathResource = new org.springframework.core.io.ClassPathResource("test_image.jpg");
