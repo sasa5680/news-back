@@ -18,6 +18,8 @@ jobs:
         uses: mikefarah/yq@master
         with:
           cmd: |
+              touch src/main/resources/application-email.yml
+            
               #              yq -i '.spring.mail.password = "${{secrets.GMAIL_SMTP_PASSWORD}}"' src/main/resources/application-email.yml
               #              yq -i '.spring.datasource.username = "${{secrets.DB_USER_NAME}}"' 'src/main/resources/application-db.yml'
               #              yq -i '.spring.datasource.password = "${{secrets.DB_PASSWORD}}"' 'src/main/resources/application-db.yml'
