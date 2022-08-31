@@ -18,9 +18,13 @@ jobs:
         uses: mikefarah/yq@master
         with:
           cmd: |
-              # touch src/main/resources/application-email.yml
+              touch src/main/resources/application-email.yml
+              touch src/main/resources/application-db.yml
+              touch src/main/resources/application-s3.yml
             
-              #              yq -i '.spring.mail.password = "${{secrets.GMAIL_SMTP_PASSWORD}}"' src/main/resources/application-email.yml
+              ls /src/main/resources
+
+            #              yq -i '.spring.mail.password = "${{secrets.GMAIL_SMTP_PASSWORD}}"' src/main/resources/application-email.yml
               #              yq -i '.spring.datasource.username = "${{secrets.DB_USER_NAME}}"' 'src/main/resources/application-db.yml'
               #              yq -i '.spring.datasource.password = "${{secrets.DB_PASSWORD}}"' 'src/main/resources/application-db.yml'
               #              yq -i '.cloud.aws.credentials.accessKey = "${{secrets.S3_ACCESSKEY}}"' 'src/main/resources/application-aws.yml'
