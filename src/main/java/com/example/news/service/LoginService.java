@@ -1,19 +1,15 @@
 package com.example.news.service;
 
 import com.example.news.bean.ModelMapperBean;
-import com.example.news.dto.in.GoogleUserDto;
-import com.example.news.dto.in.LoginDto;
-import com.example.news.dto.in.UserUpdateDto;
-import com.example.news.dto.out.LoginResDto;
+import com.example.news.dto.req.LoginDto;
+import com.example.news.dto.res.LoginResDto;
 import com.example.news.entity.UserEntity;
 import com.example.news.exception.ErrorCode;
 import com.example.news.exception.NoAuthException;
 import com.example.news.repo.UserRepo;
 import com.example.news.token.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 @Service
 public class LoginService {

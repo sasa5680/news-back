@@ -1,9 +1,8 @@
 package com.example.news.entity;
 
 
-import com.example.news.dto.in.NewsInDto;
+import com.example.news.dto.req.NewsInDto;
 import com.example.news.types.NewsMain;
-import com.example.news.types.UserRole;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;

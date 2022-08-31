@@ -1,7 +1,7 @@
 package com.example.news.controller;
 
-import com.example.news.dto.in.LoginDto;
-import com.example.news.dto.out.LoginResDto;
+import com.example.news.dto.req.LoginDto;
+import com.example.news.dto.res.LoginResDto;
 import com.example.news.service.LoginService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

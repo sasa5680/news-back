@@ -1,12 +1,11 @@
 package com.example.news.components;
 
 import com.example.news.component.UUIDMap;
-import com.example.news.dto.in.UserInDto;
+import com.example.news.dto.req.UserInDto;
 import com.example.news.mockData.MockUser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 

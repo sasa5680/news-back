@@ -1,7 +1,6 @@
 package com.example.news.mockData;
 
-import com.example.news.dto.in.NewsInDto;
-import com.example.news.dto.out.NewsOutDto;
+import com.example.news.dto.req.NewsInDto;
 import com.example.news.entity.NewsEntity;
 import com.example.news.entity.UserEntity;
 import com.example.news.repo.NewsRepo;

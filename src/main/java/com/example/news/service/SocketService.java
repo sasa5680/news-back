@@ -1,6 +1,6 @@
 package com.example.news.service;
 
-import com.example.news.dto.out.NewNewsDto;
+import com.example.news.dto.res.NewNewsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;

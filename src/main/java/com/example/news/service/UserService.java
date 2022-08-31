@@ -2,9 +2,9 @@ package com.example.news.service;
 
 import com.example.news.bean.ModelMapperBean;
 import com.example.news.component.UUIDMap;
-import com.example.news.dto.in.UserInDto;
-import com.example.news.dto.in.UserUpdateDto;
-import com.example.news.dto.out.UserOutDto;
+import com.example.news.dto.req.UserInDto;
+import com.example.news.dto.req.UserUpdateDto;
+import com.example.news.dto.res.UserOutDto;
 import com.example.news.entity.UserEntity;
 import com.example.news.exception.BadRequestException;
 import com.example.news.exception.ErrorCode;

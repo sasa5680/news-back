@@ -1,7 +1,7 @@
 package com.example.news.entity;
 
 
-import com.example.news.dto.in.UserInDto;
+import com.example.news.dto.req.UserInDto;
 import com.example.news.types.UserRole;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
