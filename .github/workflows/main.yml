@@ -11,12 +11,13 @@ jobs:
     steps:
 
       #깃허브에서 파일 가져온다.
-      - uses: actions/checkout@v2
+      - name: Check out source code
+        uses: actions/checkout@v2
 
       - name: Setup Secret Keys (email, db, S3)
-          uses: mikefarah/yq@master
-          with:
-            cmd: |
+        uses: mikefarah/yq@master
+        with:
+          cmd: |
               #              yq -i '.spring.mail.password = "${{secrets.GMAIL_SMTP_PASSWORD}}"' src/main/resources/application-email.yml
               #              yq -i '.spring.datasource.username = "${{secrets.DB_USER_NAME}}"' 'src/main/resources/application-db.yml'
               #              yq -i '.spring.datasource.password = "${{secrets.DB_PASSWORD}}"' 'src/main/resources/application-db.yml'
@@ -24,8 +25,9 @@ jobs:
               #              yq -i '.cloud.aws.credentials.secretKey = "${{secrets.S3_SECRET_KEY}}"' 'src/main/resources/application-aws.yml'
               #              yq -i '.kakao.client.id = "${{secrets.KAKAO_KEY}}"' 'src/main/resources/application-social.yml'
               #heroku 배포
-              - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-                with:
-                  heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-                  heroku_app_name: "myopennews" #Must be unique in Heroku
-                  heroku_email: "sasa5680@naver.com"
+      - name: Heroku diploy
+        uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "opennewsback" #Must be unique in Heroku
+          heroku_email: "sasa5680@naver.com"
