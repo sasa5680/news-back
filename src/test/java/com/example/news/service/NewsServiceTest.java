@@ -2,10 +2,9 @@ package com.example.news.service;
 
 import com.example.news.Utils;
 import com.example.news.bean.ModelMapperBean;
-import com.example.news.dto.in.NewsInDto;
-import com.example.news.dto.in.UserInDto;
-import com.example.news.dto.out.NewsOutDto;
-import com.example.news.dto.out.NewsSimpleDto;
+import com.example.news.dto.req.NewsInDto;
+import com.example.news.dto.res.NewsOutDto;
+import com.example.news.dto.res.NewsSimpleDto;
 import com.example.news.entity.NewsEntity;
 import com.example.news.entity.UserEntity;
 import com.example.news.mockData.MockNews;

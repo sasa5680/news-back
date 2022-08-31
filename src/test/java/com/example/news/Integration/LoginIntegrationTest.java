@@ -1,7 +1,6 @@
 package com.example.news.Integration;
 
-import com.example.news.dto.out.LoginResDto;
-import com.example.news.dto.out.UserOutDto;
+import com.example.news.dto.res.LoginResDto;
 import com.example.news.entity.UserEntity;
 import com.example.news.mockData.MockUser;
 import com.example.news.repo.UserRepo;
@@ -12,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
 import javax.transaction.Transactional;
 

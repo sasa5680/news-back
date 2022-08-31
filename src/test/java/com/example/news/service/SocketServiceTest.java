@@ -1,6 +1,6 @@
 package com.example.news.service;
 
-import com.example.news.dto.out.NewNewsDto;
+import com.example.news.dto.res.NewNewsDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

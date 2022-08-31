@@ -1,7 +1,7 @@
 package com.example.news.mockData;
 
-import com.example.news.dto.in.UserInDto;
-import com.example.news.dto.in.UserUpdateDto;
+import com.example.news.dto.req.UserInDto;
+import com.example.news.dto.req.UserUpdateDto;
 import com.example.news.entity.UserEntity;
 import com.example.news.repo.UserRepo;
 import com.example.news.types.UserRole;
@@ -12,7 +12,6 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data

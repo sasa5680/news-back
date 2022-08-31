@@ -1,9 +1,7 @@
 package com.example.news.Integration;
 
 import com.example.news.Utils;
-import com.example.news.dto.out.NewsOutDto;
-import com.example.news.dto.out.NewsSimpleDto;
-import com.example.news.dto.out.UserOutDto;
+import com.example.news.dto.res.NewsOutDto;
 import com.example.news.entity.NewsEntity;
 import com.example.news.entity.UserEntity;
 import com.example.news.mockData.MockNews;
@@ -11,7 +9,6 @@ import com.example.news.mockData.MockUser;
 import com.example.news.repo.NewsRepo;
 import com.example.news.repo.UserRepo;
 import com.example.news.service.S3Service;
-import com.example.news.service.SocketService;
 import com.example.news.token.TokenProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -21,20 +18,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import javax.transaction.Transactional;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.Set;
-import java.util.StringTokenizer;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;

@@ -1,13 +1,12 @@
 package com.example.news.service;
 
 import com.example.news.bean.ModelMapperBean;
-import com.example.news.dto.in.NewsInDto;
-import com.example.news.dto.out.NewNewsDto;
-import com.example.news.dto.out.NewsOutDto;
-import com.example.news.dto.out.NewsSimpleDto;
+import com.example.news.dto.req.NewsInDto;
+import com.example.news.dto.res.NewNewsDto;
+import com.example.news.dto.res.NewsOutDto;
+import com.example.news.dto.res.NewsSimpleDto;
 import com.example.news.entity.NewsEntity;
 import com.example.news.entity.UserEntity;
-import com.example.news.exception.NoAuthException;
 import com.example.news.repo.NewsRepo;
 import com.example.news.repo.UserRepo;
 import com.example.news.types.NewsMain;

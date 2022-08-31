@@ -1,4 +1,4 @@
-package com.example.news.dto.in;
+package com.example.news.dto.req;
 
 import lombok.*;
 

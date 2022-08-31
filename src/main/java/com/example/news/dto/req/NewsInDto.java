@@ -1,4 +1,4 @@
-package com.example.news.dto.in;
+package com.example.news.dto.req;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;

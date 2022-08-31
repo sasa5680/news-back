@@ -1,15 +1,11 @@
 package com.example.news.component;
 
-import com.example.news.auth.User;
-import com.example.news.dto.in.UserInDto;
-import com.example.news.entity.UserEntity;
+import com.example.news.dto.req.UserInDto;
 import net.jodah.expiringmap.ExpirationPolicy;
 import net.jodah.expiringmap.ExpiringMap;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
