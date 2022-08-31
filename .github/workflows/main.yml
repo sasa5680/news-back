@@ -26,8 +26,9 @@ jobs:
               
               #email 파일 설정
               yq -i '.spring.mail.password = "${{secrets.EMAIL_PW}"' src/main/resources/application-email.yml
-              
-              #DB
+              yq -i '.spring.mail.username = "${{secrets.EMAIL}"' src/main/resources/application-email.yml
+            
+            #DB
               yq -i '.spring.datasource.password = "${{secrets.DB_PW}}"' 'src/main/resources/application-db.yml'
               
               yq -i '.cloud.aws.credentials.accessKey = "${{secrets.S3_ACCESSKEY}}"' 'src/main/resources/application-aws.yml'
