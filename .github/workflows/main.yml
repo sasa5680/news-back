@@ -18,18 +18,22 @@ jobs:
         uses: mikefarah/yq@master
         with:
           cmd: |
-              touch src/main/resources/application-email.yml
-              touch src/main/resources/application-db.yml
-              touch src/main/resources/application-s3.yml
-            
-              ls src/main/resources
+#              touch src/main/resources/application-email.yml
+#              touch src/main/resources/application-db.yml
+#              touch src/main/resources/application-s3.yml
+#
+#              ls src/main/resources
+              
+              #email 파일 설정
+              yq -i '.spring.mail.password = "${{secrets.EMAIL_PW}"' src/main/resources/application-email.yml
+              
+              #DB
+              yq -i '.spring.datasource.password = "${{secrets.DB_PW}}"' 'src/main/resources/application-db.yml'
+              
+              yq -i '.cloud.aws.credentials.accessKey = "${{secrets.S3_ACCESSKEY}}"' 'src/main/resources/application-aws.yml'
+              yq -i '.cloud.aws.credentials.secretKey = "${{secrets.S3_SECRET_KEY}}"' 'src/main/resources/application-aws.yml'
 
-            #              yq -i '.spring.mail.password = "${{secrets.GMAIL_SMTP_PASSWORD}}"' src/main/resources/application-email.yml
-              #              yq -i '.spring.datasource.username = "${{secrets.DB_USER_NAME}}"' 'src/main/resources/application-db.yml'
-              #              yq -i '.spring.datasource.password = "${{secrets.DB_PASSWORD}}"' 'src/main/resources/application-db.yml'
-              #              yq -i '.cloud.aws.credentials.accessKey = "${{secrets.S3_ACCESSKEY}}"' 'src/main/resources/application-aws.yml'
-              #              yq -i '.cloud.aws.credentials.secretKey = "${{secrets.S3_SECRET_KEY}}"' 'src/main/resources/application-aws.yml'
-              #              yq -i '.kakao.client.id = "${{secrets.KAKAO_KEY}}"' 'src/main/resources/application-social.yml'
+              #yq -i '.kakao.client.id = "${{secrets.KAKAO_KEY}}"' 'src/main/resources/application-social.yml'
               #heroku 배포
 
       - name: Heroku deploy

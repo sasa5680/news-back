@@ -1,8 +1,8 @@
 cloud:
   aws:
     credentials:
-      accessKey: AKIAZDM64FMQE2ANLE4B
-      secretKey: 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
+      accessKey:
+      secretKey:
     s3:
       bucket: opennewsapp
     region:
