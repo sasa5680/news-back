@@ -18,7 +18,7 @@ jobs:
         uses: mikefarah/yq@master
         with:
           cmd: |
-              touch src/main/resources/application-email.yml
+              # touch src/main/resources/application-email.yml
             
               #              yq -i '.spring.mail.password = "${{secrets.GMAIL_SMTP_PASSWORD}}"' src/main/resources/application-email.yml
               #              yq -i '.spring.datasource.username = "${{secrets.DB_USER_NAME}}"' 'src/main/resources/application-db.yml'
@@ -27,6 +27,11 @@ jobs:
               #              yq -i '.cloud.aws.credentials.secretKey = "${{secrets.S3_SECRET_KEY}}"' 'src/main/resources/application-aws.yml'
               #              yq -i '.kakao.client.id = "${{secrets.KAKAO_KEY}}"' 'src/main/resources/application-social.yml'
               #heroku 배포
+
+      - name: see files
+        with:
+          cmd : | 
+            ls -al
       - name: Heroku deploy
         uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:

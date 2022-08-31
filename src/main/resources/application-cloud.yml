@@ -1,0 +1,11 @@
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIAZDM64FMQE2ANLE4B
+      secretKey: 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
+    s3:
+      bucket: opennewsapp
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
