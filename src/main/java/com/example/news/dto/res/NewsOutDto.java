@@ -3,12 +3,15 @@ package com.example.news.dto.res;
 import com.example.news.entity.NewsEntity;
 import com.example.news.types.NewsMain;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
 @Schema(description = "뉴스 상세 out dto")
 public class NewsOutDto extends BaseDto{
 
@@ -55,12 +58,17 @@ public class NewsOutDto extends BaseDto{
     @Schema(description = "연관 뉴스들")
     private Set<NewsSimpleDto> relatedNews;
 
+    //댓글들
+    @Schema(description = "댓글들")
+    private Set<ReplyOutDto> reply;
+
+
     public static NewsOutDto from(ModelMapper modelMapper, NewsEntity newsEntity, Set<NewsEntity> relatedNews){
 
         NewsOutDto newsOutDto = modelMapper.map(newsEntity, NewsOutDto.class);
         newsOutDto.setUser(modelMapper.map(newsEntity.getUser(), UserOutDto.class));
         if(relatedNews != null) newsOutDto.setRelatedNews(NewsSimpleDto.from(modelMapper, relatedNews));
-
+        newsOutDto.setReply(ReplyOutDto.from(newsEntity.getReply(), modelMapper));
         return newsOutDto;
     }
 

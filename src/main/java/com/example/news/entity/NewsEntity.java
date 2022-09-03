@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Set;
 
 //유저가 뉴스 기사를 정의
 @Entity
@@ -51,6 +52,11 @@ public class NewsEntity extends BaseEntity {
     @JoinColumn(name = "user_id")
     @ManyToOne
     private UserEntity user;
+
+    //작성자 레퍼런스
+    @JoinColumn(name = "news_id")
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<ReplyEntity> reply;
 
     public static NewsEntity from(NewsInDto newsInDto, String newsProfile, UserEntity userEntity, ModelMapper modelMapper) {
 

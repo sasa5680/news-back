@@ -48,9 +48,6 @@ public class NewsService {
         NewsEntity newsEntity = NewsEntity.from(newsInDto, profile, userEntity, modelMapperBean.modelMapper());
         newsEntity = newsRepo.save(newsEntity);
 
-        //새 뉴스 알림
-        socketService.sendMessage(NewNewsDto.from(newsEntity, modelMapperBean.modelMapper()));
-
         NewsOutDto newsOutDto = NewsOutDto.from(modelMapperBean.modelMapper(), newsEntity, null);
         return newsOutDto;
     }

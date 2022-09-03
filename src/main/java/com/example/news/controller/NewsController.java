@@ -42,7 +42,7 @@ public class NewsController {
 
     //뉴스 작성
     @Operation(summary = "뉴스 생성", description = "뉴스를 생성한다. 기자 권한 필요")
-    @Auth(userRole = UserRole.WRITER)
+    @Auth(userRole = UserRole.USER)
     @PostMapping("/create")
     public ResponseEntity<NewsOutDto> createNews
     (
@@ -121,7 +121,7 @@ public class NewsController {
 
     //뉴스 수정
     @Operation(summary = "수정", description = "뉴스를 수정한다. 어드민 권한, 소유자 권한 필요")
-    @Auth(userRole = UserRole.WRITER)
+    @Auth(userRole = UserRole.USER)
     @PutMapping("/{id}")
     public NewsOutDto updateNews(
             @User
@@ -135,7 +135,7 @@ public class NewsController {
     }
 
     @Operation(summary = "뉴스 삭제", description = "뉴스를 삭제한다. 권한 필요")
-    @Auth(userRole = UserRole.WRITER)
+    @Auth(userRole = UserRole.USER)
     @DeleteMapping("/{id}")
     public void deleteNews(
             @User

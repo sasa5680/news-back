@@ -77,7 +77,6 @@ public class NewsIntegrationTest {
         String token =
                 tokenProvider.createToken(userEntity.getUserRole(), userEntity.getUserId());
 
-
         //POST 매핑 + Multipart file 설정 + 헤더 설정
         MockMultipartHttpServletRequestBuilder builder =
                 MockMvcRequestBuilders.multipart("/api/news/create");

@@ -26,7 +26,8 @@ public class MailService {
 
     private final JavaMailSender javaMailSender;
 
-    private String url = "http://localhost:8080";
+    //클라이언트 URL
+    private String url = "https://myopennews.herokuapp.com";
 
     @Value("${spring.mail.password}")
     private String pass;
@@ -71,7 +72,7 @@ public class MailService {
     public void sendTestEmail(String subject, String email) throws MessagingException {
 
         Context context = new Context();
-        context.setVariable("logo", url + "/img/img.png");
+        //context.setVariable("logo", url + "/img/img.png");
         context.setVariable("text", "sample");
 
         String body = templateEngine.process("TestEmail", context);
@@ -84,7 +85,7 @@ public class MailService {
     @Async
     public void sendConfirmEmail(String UUID, String email, String username) throws MessagingException {
 
-        String link = "http://localhost:3000/confirm/"+UUID;
+        String link = "https://myopennews.herokuapp.com/confirm/"+UUID;
 
         Context context = new Context();
         context.setVariable("link", link);

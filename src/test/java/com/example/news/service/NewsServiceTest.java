@@ -38,7 +38,6 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
-
 @ExtendWith(MockitoExtension.class)
 public class NewsServiceTest {
 

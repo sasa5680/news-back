@@ -10,6 +10,7 @@ import org.springframework.mock.web.MockMultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 
 public class MockNews {
 
@@ -53,6 +54,7 @@ public class MockNews {
         newsEntity.setModifiedAt(LocalDateTime.now());
         newsEntity.setNewsApproved(newsApproved);
         newsEntity.setNewsMain(newsMain);
+        newsEntity.setReply(new HashSet<>());
 
         return newsEntity;
     }

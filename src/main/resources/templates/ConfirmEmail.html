@@ -22,7 +22,9 @@
 
         <!-- 로고 텍스트 -->
         <div style="display: flex; margin-left: 30px; font-weight: 700; font-size: 30px;">
-            <p>OPPE</p><p style="color: #245698;">NN</p><p>EWS</p>
+            <p>OPPE</p>
+            <p style="color: #245698;">NN</p>
+            <p>EWS</p>
         </div>
 
     </div>
@@ -35,14 +37,20 @@
             <p th:text="${userName}" style="font-size: 30px; font-weight: 700; color: #245698; margin-left: 10px;"></p>
 
         </div>
-        <p >Thanks for Signing Up!</p>
-        <p>To complete your registration, please click the Button Below.</p>
 
-        <img src="58aff1e7829958a978a4a6ce.png"/>
+        <div style="margin-top: 30px">
+            <p>Thanks for Signing Up!</p>
+            <p>To complete your registration, please click the Button Below.</p>
+        </div>
+
 
         <div style="display: flex; justify-content: center; margin-top: 30px;">
-            <a th:href="${link}"><button
-                    style="width: 150px; height: 50px; font-size: 30px; cursor: pointer; background-color:#245698; border: none;">Go</button></a>
+            <a th:href="${link}">
+                <button
+                        style="width: 150px; height: 50px; font-size: 30px; cursor: pointer; background-color:#245698; border: none;">
+                    Go
+                </button>
+            </a>
         </div>
 
     </div>
