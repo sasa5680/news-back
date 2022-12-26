@@ -13,6 +13,13 @@ spring:
         ddl-auto: none
         format_sql: true
 
+  datasource:
+    #url: jdbc:mariadb://localhost:3306/newsapp
+    url: jdbc:mariadb://mydb.c8xuw45xrre9.ap-northeast-2.rds.amazonaws.com/newsapp
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password:
+
   servlet:
     multipart:
       max-file-size: 8MB
@@ -28,8 +35,18 @@ spring:
   server:
     port: 8080
 
-  profiles:
-    include: 'email, db, cloud'
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    protocol: smtp
+    username: "a01091522550@gmail.com"
+    password:
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 jwt:
   header: Authorization
@@ -53,4 +70,16 @@ springdoc:
     display-query-params-without-oauth2: true
   paths-to-match:
     - /api/**
+
+cloud:
+  aws:
+    credentials:
+      accessKey: AKIAZDM64FMQE2ANLE4B
+      secretKey: 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
+    s3:
+      bucket: opennewsapp
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
 

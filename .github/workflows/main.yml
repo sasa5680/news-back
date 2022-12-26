@@ -1,5 +1,8 @@
 name: Deploy
 
+env :
+  RESOURCE_PATH: ./src/main/resources/application.yml
+
 on:
   push:
     branches:
@@ -13,6 +16,17 @@ jobs:
       #깃허브에서 파일 가져온다.
       - name: Check out source code
         uses: actions/checkout@v2
+
+      - name: Set Yml File
+        uses: microsoft/variable-substitution@v1
+        with:
+          files: 'src/main/resources/application.yml'
+        env:
+            spring.mail.password : ${{secrets.GMAIL_SMTP_PASSWORD}}
+            spring.datasource.password : ${{secrets.DB_PASSWORD}}
+
+
+
 
       - name: Setup Secret Keys (email, db, S3)
         uses: mikefarah/yq@master
