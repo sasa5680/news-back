@@ -22,8 +22,8 @@ jobs:
         with:
           files: 'src/main/resources/application.yml'
         env:
-            spring.mail.password : ${{secrets.GMAIL_SMTP_PASSWORD}}
-            spring.datasource.password : ${{secrets.DB_PASSWORD}}
+            spring.mail.password : ${{secrets.EMAIL_PW}}
+            spring.datasource.password : ${{secrets.DB_PW}}
 
 
 
