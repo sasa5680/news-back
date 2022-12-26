@@ -74,8 +74,8 @@ springdoc:
 cloud:
   aws:
     credentials:
-      accessKey: AKIAZDM64FMQE2ANLE4B
-      secretKey: 
+      accessKey:
+      secretKey:
     s3:
       bucket: opennewsapp
     region:

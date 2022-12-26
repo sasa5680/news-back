@@ -20,12 +20,12 @@ jobs:
       - name: Set Yml File
         uses: microsoft/variable-substitution@v1
         with:
-          files: 'src/main/resources/application.yml'
+          files: 'src/main/resources/application.yml' #설정할 파일
         env:
             spring.mail.password : ${{secrets.EMAIL_PW}}
             spring.datasource.password : ${{secrets.DB_PW}}
             cloud.aws.credentials.secretKey : ${{secrets.S3_SECRET_KEY}}
-
+            cloud.aws.credentials.accessKey : ${{secrets.S3_ACCESSKEY}}
 
 
       - name: Setup Secret Keys (email, db, S3)
