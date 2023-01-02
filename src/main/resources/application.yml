@@ -15,9 +15,9 @@ spring:
 
   datasource:
     #url: jdbc:mariadb://localhost:3306/newsapp
-    url: jdbc:mariadb://mydb.c8xuw45xrre9.ap-northeast-2.rds.amazonaws.com/newsapp
+    url: jdbc:mariadb://us-cdbr-east-06.cleardb.net
     driver-class-name: org.mariadb.jdbc.Driver
-    username: root
+    username: bfc642b12973ff
     password:
 
   servlet:
