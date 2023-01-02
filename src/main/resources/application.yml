@@ -15,7 +15,7 @@ spring:
 
   datasource:
     #url: jdbc:mariadb://localhost:3306/newsapp
-    url: jdbc:mariadb://us-cdbr-east-06.cleardb.net
+    url: jdbc:mariadb://us-cdbr-east-06.cleardb.net/heroku_d07dea9f61007dc
     driver-class-name: org.mariadb.jdbc.Driver
     username: bfc642b12973ff
     password:
