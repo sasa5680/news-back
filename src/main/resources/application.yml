@@ -20,6 +20,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: sas5680
     password: wjd@568099
+    hikari:
+      maximum-pool-size: 10
 
 
 
