@@ -16,7 +16,7 @@ spring:
 
   datasource:
     #url: jdbc:mariadb://localhost:3306/newsapp
-    url: jdbc:mysql://sasa5680azure.mysql.database.azure.com:3306/newsapp?useSSL=false?encrypt=false
+    url: jdbc:mysql://sasa5680azure.mysql.database.azure.com/newsapp?encrypt=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: sas5680
     password: wjd@568099
