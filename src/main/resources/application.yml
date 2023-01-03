@@ -14,7 +14,7 @@ spring:
         format_sql: true
 
   datasource:
-    url: jdbc:mariadb://sasa5680azure.mysql.database.azure.com:3306:3306/newsapp
+    url: jdbc:mariadb://sasa5680azure.mysql.database.azure.com:3306:3306/newsapp?useSSL=false
     #url: jdbc:mysql://sasa5680azure.mysql.database.azure.com:3306/newsapp
     driver-class-name: org.mariadb.jdbc.Driver
     username: sas5680
