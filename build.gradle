@@ -24,7 +24,7 @@ dependencies {
 
     // DB connection
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client' // MariaDB
-
+    implementation 'mysql:mysql-connector-java:8.0.15'
     implementation 'org.springframework.boot:spring-boot-starter-batch'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
