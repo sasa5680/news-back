@@ -3,6 +3,7 @@ package com.example.news.dto.res;
 import com.example.news.entity.NewsEntity;
 import com.example.news.types.NewsMain;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,9 @@ import org.modelmapper.ModelMapper;
 import java.util.Set;
 
 @Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Schema(description = "뉴스 상세 out dto")
 public class NewsOutDto extends BaseDto{
 

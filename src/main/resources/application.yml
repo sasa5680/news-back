@@ -16,10 +16,10 @@ spring:
 
   datasource:
     #url: jdbc:mariadb://localhost:3306/newsapp
-    url: jdbc:mysql://20.249.4.51:3306/newsapp?autoReconnect=true
+    url: jdbc:mysql://us-cdbr-east-06.cleardb.net/heroku_d07dea9f61007dc?reconnect=true
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: root
-    password: wjd@568099
+    username: bfc642b12973ff
+    password: 34e47441
 
     hikari:
       maximum-pool-size: 10
