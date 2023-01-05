@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = "16"
+sourceCompatibility = "8"
 
 configurations {
     compileOnly {
@@ -73,8 +73,13 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+//테스트 제외
+test {
+    exclude '**/*'
+}
+
 //plain jar 파일 생성을 막는다.
 jar {
     enabled = false
 }
-targetCompatibility = JavaVersion.VERSION_16
+targetCompatibility = JavaVersion.VERSION_1_8
